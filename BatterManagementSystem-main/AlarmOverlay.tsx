@@ -1,5 +1,5 @@
 import { Siren, ShieldAlert, X, Zap, Power, Clock, ArrowRight, Wrench, AlertOctagon, BookOpen, ClipboardCheck } from 'lucide-react';
-import { Alarm, AlarmSolution } from '../utils/alarmSystem';
+import { Alarm, AlarmSolution } from './alarmSystem';
 
 interface AlarmOverlayProps {
   /** Every threat currently active — drives the red hue blink + banner */

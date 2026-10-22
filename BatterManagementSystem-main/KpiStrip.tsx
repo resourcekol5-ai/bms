@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
-import { BmsTelemetry, CellData, ChemistrySpec } from '../../types/battery';
-import { ElectricalState, EnergyCounters, fmtPower, fmtOhm } from '../../utils/electrical';
-import { estimateBatteryLife } from '../../utils/batteryLife';
+import { BmsTelemetry, CellData, ChemistrySpec } from './battery';
+import { ElectricalState, EnergyCounters, fmtPower, fmtOhm } from './electrical';
+import { estimateBatteryLife } from './batteryLife';
 import { Zap, Gauge, Activity, BatteryCharging, Waves, ShieldCheck, ToggleRight, Sigma, Clock3 } from 'lucide-react';
 
 interface KpiStripProps {

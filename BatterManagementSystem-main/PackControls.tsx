@@ -1,6 +1,6 @@
 import React from 'react';
-import { SimulationMode, LoadProfile, PackConfig, ChemistrySpec } from '../types/battery';
-import { LOAD_PROFILES } from '../data/batteryChemistryData';
+import { SimulationMode, LoadProfile, PackConfig, ChemistrySpec } from './battery';
+import { LOAD_PROFILES } from './batteryChemistryData';
 import { 
   Pause, 
   Zap, 
@@ -22,7 +22,7 @@ import {
   Square,
   FileText
 } from 'lucide-react';
-import { playCellClickSound, playRelayClickSound } from '../utils/audio';
+import { playCellClickSound, playRelayClickSound } from './audio';
 
 interface PackControlsProps {
   simulationMode: SimulationMode;

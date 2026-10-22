@@ -1,8 +1,8 @@
 import React from 'react';
-import { CellData, ChemistrySpec, SimulationMode } from '../types/battery';
-import { LiveLineChart } from './charts/LiveLineChart';
-import { calculateOcvFromSoc } from '../utils/simulation';
-import { estimateCellLife } from '../utils/batteryLife';
+import { CellData, ChemistrySpec, SimulationMode } from './battery';
+import { LiveLineChart } from './LiveLineChart';
+import { calculateOcvFromSoc } from './simulation';
+import { estimateCellLife } from './batteryLife';
 import { 
   Zap, 
   Thermometer, 
@@ -23,7 +23,7 @@ import {
   Layers,
   Clock3
 } from 'lucide-react';
-import { playCellClickSound, playAlarmSound } from '../utils/audio';
+import { playCellClickSound, playAlarmSound } from './audio';
 
 interface CellInspectorProps {
   cell: CellData;

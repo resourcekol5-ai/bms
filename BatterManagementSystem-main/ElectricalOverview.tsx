@@ -1,14 +1,14 @@
 import type { ReactNode } from 'react';
-import { CellData, ChemistrySpec, BmsTelemetry, SessionSnapshot, SimulationMode } from '../../types/battery';
-import { BmsLogEvent } from '../BmsLogsModal';
-import { ElectricalState, EnergyCounters, fmtOhm } from '../../utils/electrical';
-import { packSeriesFromCells } from '../../utils/chartData';
-import { LiveLineChart } from '../charts/LiveLineChart';
-import { DeltaBarChart } from '../charts/DeltaBarChart';
-import { SingleLineDiagram } from '../electrical/SingleLineDiagram';
-import { playCellClickSound } from '../../utils/audio';
-import { estimateBatteryLife } from '../../utils/batteryLife';
-import { currentLimitA } from '../../utils/alarmSystem';
+import { CellData, ChemistrySpec, BmsTelemetry, SessionSnapshot, SimulationMode } from './battery';
+import { BmsLogEvent } from './BmsLogsModal';
+import { ElectricalState, EnergyCounters, fmtOhm } from './electrical';
+import { packSeriesFromCells } from './chartData';
+import { LiveLineChart } from './LiveLineChart';
+import { DeltaBarChart } from './DeltaBarChart';
+import { SingleLineDiagram } from './SingleLineDiagram';
+import { playCellClickSound } from './audio';
+import { estimateBatteryLife } from './batteryLife';
+import { currentLimitA } from './alarmSystem';
 import { ShieldCheck, Table2, Cpu, ArrowRight, FileSpreadsheet, FileText, Activity, ScrollText } from 'lucide-react';
 
 interface Props {

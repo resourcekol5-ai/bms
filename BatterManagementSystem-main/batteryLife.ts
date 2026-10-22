@@ -1,4 +1,4 @@
-import { BmsTelemetry, CellData, ChemistrySpec } from '../types/battery';
+import { BmsTelemetry, CellData, ChemistrySpec } from './battery';
 
 export interface BatteryLifeEstimate {
   runtimeSeconds: number;

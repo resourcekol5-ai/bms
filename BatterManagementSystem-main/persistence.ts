@@ -1,7 +1,7 @@
 // Offline persistence: saves the pack state so the app restores previous data
 // on reload with no internet. Uses localStorage (always available, even offline).
 
-import type { CellData, SimulationMode, LoadProfile, PackConfig, SessionSnapshot, BatteryChemistryType } from '../types/battery';
+import type { CellData, SimulationMode, LoadProfile, PackConfig, SessionSnapshot, BatteryChemistryType } from './battery';
 import type { AlarmRecord } from './alarmSystem';
 import type { EnergyCounters } from './electrical';
 

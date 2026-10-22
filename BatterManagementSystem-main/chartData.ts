@@ -1,4 +1,4 @@
-import { CellData } from '../types/battery';
+import { CellData } from './battery';
 
 export const CELL_HISTORY_LIMIT = 180;
 

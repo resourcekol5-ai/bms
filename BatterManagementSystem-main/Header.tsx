@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { SimulationMode } from '../types/battery';
-import { ContactorState } from '../utils/electrical';
+import { SimulationMode } from './battery';
+import { ContactorState } from './electrical';
 import { Volume2, VolumeX, Terminal, Zap, Play, Square, FileText, Home } from 'lucide-react';
-import { setSoundEnabled, isSoundEnabled, playCellClickSound } from '../utils/audio';
+import { setSoundEnabled, isSoundEnabled, playCellClickSound } from './audio';
 
 interface HeaderProps {
   cellTypeLabel: string;
@@ -92,8 +92,8 @@ export const Header: React.FC<HeaderProps> = ({
           <span
             title={
               online
-                ? 'Connected to a network — but the app does not need it. All data is stored locally.'
-                : 'Working offline. All data is stored locally in this browser.'
+                ? 'Connected to a network. Simulation runs locally; report history is saved online.'
+                : 'Simulation works offline. Report history needs a connection; retry failed saves after reconnecting.'
             }
             className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-[11px] font-mono font-bold ${
               online

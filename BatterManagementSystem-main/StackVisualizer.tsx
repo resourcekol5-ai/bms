@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CellData, ChemistrySpec, ViewMode, SimulationMode } from '../types/battery';
+import { CellData, ChemistrySpec, ViewMode, SimulationMode } from './battery';
 import { 
   Cpu, 
   Thermometer, 
@@ -20,11 +20,11 @@ import {
   AlertTriangle,
   Clock3
 } from 'lucide-react';
-import { playCellClickSound, playAlarmSound } from '../utils/audio';
-import { DeltaBarChart } from './charts/DeltaBarChart';
-import { LiveLineChart } from './charts/LiveLineChart';
+import { playCellClickSound, playAlarmSound } from './audio';
+import { DeltaBarChart } from './DeltaBarChart';
+import { LiveLineChart } from './LiveLineChart';
 import { ThreeStack3D, HeatmapColorMode } from './ThreeStack3D';
-import { estimateCellLife } from '../utils/batteryLife';
+import { estimateCellLife } from './batteryLife';
 
 interface StackVisualizerProps {
   cells: CellData[];
