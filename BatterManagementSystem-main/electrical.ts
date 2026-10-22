@@ -1,4 +1,4 @@
-import { BmsTelemetry, CellData } from '../types/battery';
+import { BmsTelemetry, CellData } from './battery';
 
 export type ContactorState = 'open' | 'precharge' | 'closed' | 'tripped';
 

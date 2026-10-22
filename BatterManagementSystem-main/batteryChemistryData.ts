@@ -1,4 +1,4 @@
-import { ChemistrySpec, BatteryChemistryType } from '../types/battery';
+import { ChemistrySpec, BatteryChemistryType } from './battery';
 
 export const BATTERY_CHEMISTRIES: Record<BatteryChemistryType, ChemistrySpec> = {
   'li-ion': {

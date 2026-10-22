@@ -1,7 +1,7 @@
 import { Activity, Gauge, Thermometer, Zap } from 'lucide-react';
-import { CellData, SessionSnapshot } from '../types/battery';
-import { packSeriesFromCells } from '../utils/chartData';
-import { LiveLineChart } from './charts/LiveLineChart';
+import { CellData, SessionSnapshot } from './battery';
+import { packSeriesFromCells } from './chartData';
+import { LiveLineChart } from './LiveLineChart';
 
 interface PackWaveformsProps {
   cells: CellData[];

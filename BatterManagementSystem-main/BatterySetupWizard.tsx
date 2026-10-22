@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { X, Check, Zap, Thermometer, RefreshCw, ShieldCheck, Gauge, Layers } from 'lucide-react';
-import { BatteryChemistryType } from '../types/battery';
-import { BATTERY_CHEMISTRIES } from '../data/batteryChemistryData';
-import { playCellClickSound } from '../utils/audio';
+import { BatteryChemistryType } from './battery';
+import { BATTERY_CHEMISTRIES } from './batteryChemistryData';
+import { playCellClickSound } from './audio';
 
 interface Props {
   isOpen: boolean;

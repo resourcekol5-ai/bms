@@ -1,5 +1,5 @@
-import { ElectricalState } from '../../utils/electrical';
-import { SimulationMode } from '../../types/battery';
+import { ElectricalState } from './electrical';
+import { SimulationMode } from './battery';
 
 interface Props {
   el: ElectricalState;

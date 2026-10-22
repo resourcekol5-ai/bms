@@ -1,4 +1,4 @@
-import { CellData } from '../../types/battery';
+import { CellData } from './battery';
 
 interface DeltaBarChartProps {
   cells: CellData[];

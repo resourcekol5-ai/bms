@@ -1,0 +1,13 @@
+[build]
+  base = "BatterManagementSystem-main"
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[dev]
+  command = "npm --prefix BatterManagementSystem-main run dev -- --host 127.0.0.1"
+  targetPort = 5173
+  framework = "#custom"

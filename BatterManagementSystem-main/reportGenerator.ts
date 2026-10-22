@@ -8,8 +8,8 @@ import {
   SimulationMode,
   LoadProfile,
   SessionSnapshot,
-} from '../types/battery';
-import { BmsLogEvent } from '../components/BmsLogsModal';
+} from './battery';
+import { BmsLogEvent } from './BmsLogsModal';
 import { packSeriesFromCells } from './chartData';
 import { deliverFile } from './fileDelivery';
 import type { ElectricalState, EnergyCounters } from './electrical';

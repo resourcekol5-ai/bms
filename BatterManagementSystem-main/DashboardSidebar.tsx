@@ -7,10 +7,10 @@ import {
   PackConfig,
   SimulationMode,
   ViewMode,
-} from '../../types/battery';
-import { BATTERY_CHEMISTRIES, LOAD_PROFILES } from '../../data/batteryChemistryData';
-import { playCellClickSound } from '../../utils/audio';
-import { formatClock } from '../../utils/reportGenerator';
+} from './battery';
+import { BATTERY_CHEMISTRIES, LOAD_PROFILES } from './batteryChemistryData';
+import { playCellClickSound } from './audio';
+import { formatClock } from './reportGenerator';
 import {
   Play,
   Square,
@@ -30,9 +30,11 @@ import {
   ChevronRight,
   Eye,
   Home,
+  History,
+  GitCompareArrows,
 } from 'lucide-react';
 
-export type DashTab = 'overview' | 'stack' | 'waveforms' | 'cell' | 'operate';
+export type DashTab = 'overview' | 'stack' | 'waveforms' | 'cell' | 'operate' | 'history' | 'compare';
 
 interface DashboardSidebarProps {
   dashTab: DashTab;
@@ -143,6 +145,8 @@ export function DashboardSidebar(props: DashboardSidebarProps) {
     { id: 'waveforms', label: 'Trends / scope', icon: <Activity className="w-3.5 h-3.5" /> },
     { id: 'cell', label: 'Cell channel', icon: <BatteryMedium className="w-3.5 h-3.5" /> },
     { id: 'operate', label: 'Control', icon: <Sliders className="w-3.5 h-3.5" /> },
+    { id: 'history', label: 'Report history', icon: <History className="w-3.5 h-3.5" /> },
+    { id: 'compare', label: 'Compare models', icon: <GitCompareArrows className="w-3.5 h-3.5" /> },
   ];
 
   return (
@@ -221,7 +225,7 @@ export function DashboardSidebar(props: DashboardSidebarProps) {
             ))}
           </select>
         </Row>
-        <div className="grid grid-cols-5 gap-1">
+        <div className="grid grid-cols-4 gap-1">
           {views.map((v) => (
             <button
               key={v.id}

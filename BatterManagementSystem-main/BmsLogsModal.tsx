@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CellData, BmsTelemetry, ChemistrySpec } from '../types/battery';
+import { CellData, BmsTelemetry, ChemistrySpec } from './battery';
 import { 
   X, 
   Terminal, 
@@ -9,8 +9,8 @@ import {
   Trash2,
   FileSpreadsheet
 } from 'lucide-react';
-import { playCellClickSound } from '../utils/audio';
-import { deliverText } from '../utils/fileDelivery';
+import { playCellClickSound } from './audio';
+import { deliverText } from './fileDelivery';
 
 export interface BmsLogEvent {
   id: string;

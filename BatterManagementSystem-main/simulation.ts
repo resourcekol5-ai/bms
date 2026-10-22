@@ -1,5 +1,5 @@
-import { BatteryChemistryType, CellData, ChemistrySpec, SimulationMode, PackConfig, CellStatus, CellFaultType } from '../types/battery';
-import { BATTERY_CHEMISTRIES } from '../data/batteryChemistryData';
+import { BatteryChemistryType, CellData, ChemistrySpec, SimulationMode, PackConfig, CellStatus, CellFaultType } from './battery';
+import { BATTERY_CHEMISTRIES } from './batteryChemistryData';
 import { CELL_HISTORY_LIMIT } from './chartData';
 
 // Generate Open Circuit Voltage (OCV) based on SoC and Chemistry

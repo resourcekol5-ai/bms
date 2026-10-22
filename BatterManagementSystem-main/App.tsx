@@ -1,3 +1,6 @@
+import { ReportHistoryView } from './ReportHistoryView';
+import { BatteryCompareView } from './BatteryCompareView';
+import { useReportHistory } from './reportHistory';
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { 
   BatteryChemistryType, 
@@ -8,28 +11,28 @@ import {
   PackConfig, 
   BmsTelemetry,
   SessionSnapshot
-} from './types/battery';
-import { BATTERY_CHEMISTRIES } from './data/batteryChemistryData';
-import { initializeCellStack, stepSimulationTick, computeProfileCurrent, socFromVoltage } from './utils/simulation';
-import { playAlarmSound, playBalanceBeep, playRelayClickSound, playCellClickSound } from './utils/audio';
+} from './battery';
+import { BATTERY_CHEMISTRIES } from './batteryChemistryData';
+import { initializeCellStack, stepSimulationTick, computeProfileCurrent, socFromVoltage } from './simulation';
+import { playAlarmSound, playBalanceBeep, playRelayClickSound, playCellClickSound } from './audio';
 
-import { Header } from './components/Header';
-import { StackVisualizer } from './components/StackVisualizer';
-import { CellInspector } from './components/CellInspector';
-import { PackControls } from './components/PackControls';
-import { BmsLogsModal, BmsLogEvent } from './components/BmsLogsModal';
-import { ElectricalOverview } from './components/dashboard/ElectricalOverview';
-import { computeElectrical, accumulateEnergy, EMPTY_ENERGY, type EnergyCounters } from './utils/electrical';
-import { PackWaveforms } from './components/PackWaveforms';
-import { downloadCellPdf, createStoredReport, downloadStoredReportPdf, type ReportContext } from './utils/reportGenerator';
-import { downloadPackCsv, downloadCellCsv } from './utils/csvExport';
-import { evaluateAlarms, buildScheduledWarning, makeAlarmRecord, currentLimitA, type Alarm, type AlarmRecord, type AlarmSolution } from './utils/alarmSystem';
-import { AlarmOverlay } from './components/AlarmOverlay';
-import { RealtimeReportModal } from './components/RealtimeReportModal';
-import { BatterySetupWizard } from './components/BatterySetupWizard';
-import { loadState, saveState, clearState } from './utils/persistence';
-import { KpiStrip } from './components/dashboard/KpiStrip';
-import { DashboardSidebar, type DashTab } from './components/dashboard/DashboardSidebar';
+import { Header } from './Header';
+import { StackVisualizer } from './StackVisualizer';
+import { CellInspector } from './CellInspector';
+import { PackControls } from './PackControls';
+import { BmsLogsModal, BmsLogEvent } from './BmsLogsModal';
+import { ElectricalOverview } from './ElectricalOverview';
+import { computeElectrical, accumulateEnergy, EMPTY_ENERGY, type EnergyCounters } from './electrical';
+import { PackWaveforms } from './PackWaveforms';
+import { downloadCellPdf, createStoredReport, downloadStoredReportPdf, type ReportContext } from './reportGenerator';
+import { downloadPackCsv, downloadCellCsv } from './csvExport';
+import { evaluateAlarms, buildScheduledWarning, makeAlarmRecord, currentLimitA, type Alarm, type AlarmRecord, type AlarmSolution } from './alarmSystem';
+import { AlarmOverlay } from './AlarmOverlay';
+import { RealtimeReportModal } from './RealtimeReportModal';
+import { BatterySetupWizard } from './BatterySetupWizard';
+import { loadState, saveState, clearState } from './persistence';
+import { KpiStrip } from './KpiStrip';
+import { DashboardSidebar, type DashTab } from './DashboardSidebar';
 import { PanelLeft, X, Eye, FileSpreadsheet, FileText, HardDriveDownload, Trash2 } from 'lucide-react';
 
 export default function App() {
@@ -1099,6 +1102,8 @@ export default function App() {
     ]
   );
 
+  const history = useReportHistory(isRunning, reportCtx);
+
   const reportCtxRef = useRef<ReportContext>(reportCtx);
   reportCtxRef.current = reportCtx;
 
@@ -1297,6 +1302,9 @@ export default function App() {
           </div>
 
           <main className="flex-1 overflow-y-auto px-4 sm:px-5 py-4">
+            <button onClick={() => setDashTab('history')} className="mb-4 text-xs text-slate-400 hover:text-cyan-300 text-left" aria-live="polite">{history.status} · Open history</button>
+            {dashTab === 'history' && <ReportHistoryView revision={history.revision} status={history.status} retry={history.retry} />}
+            {dashTab === 'compare' && <BatteryCompareView />}
             {dashTab === 'overview' && (
               <ElectricalOverview
                 cells={cells}

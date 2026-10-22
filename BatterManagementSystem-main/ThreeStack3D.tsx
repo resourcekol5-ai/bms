@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Activity, BatteryMedium, Box, Flame, RotateCw, Zap } from 'lucide-react';
-import { CellData, ChemistrySpec } from '../types/battery';
-import { playCellClickSound } from '../utils/audio';
+import { CellData, ChemistrySpec } from './battery';
+import { playCellClickSound } from './audio';
 
 export type HeatmapColorMode = 'thermal' | 'soh' | 'voltage' | 'soc' | 'balancing';
 

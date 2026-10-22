@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { formatTick, niceRange } from '../../utils/chartData';
+import { formatTick, niceRange } from './chartData';
 
 export interface ChartSeries {
   id: string;

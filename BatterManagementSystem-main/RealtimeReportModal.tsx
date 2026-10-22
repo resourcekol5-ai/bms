@@ -11,19 +11,20 @@ import {
   AlertTriangle,
   Lock,
 } from 'lucide-react';
-import type { StoredReport } from '../utils/reportGenerator';
+import type { StoredReport } from './reportGenerator';
 import {
   downloadPackPdf,
   downloadAllCellsPdf,
   downloadCellPdf,
   formatClock,
-} from '../utils/reportGenerator';
-import { downloadPackCsv, downloadCellsCsv, downloadCellCsv } from '../utils/csvExport';
-import { LiveLineChart } from './charts/LiveLineChart';
-import { packSeriesFromCells } from '../utils/chartData';
-import { playCellClickSound } from '../utils/audio';
+} from './reportGenerator';
+import { downloadPackCsv, downloadCellsCsv, downloadCellCsv } from './csvExport';
+import { LiveLineChart } from './LiveLineChart';
+import { packSeriesFromCells } from './chartData';
+import { playCellClickSound } from './audio';
 
 interface RealtimeReportModalProps {
+  archived?: boolean;
   isOpen: boolean;
   onClose: () => void;
   isRunning: boolean;
@@ -82,7 +83,7 @@ function ExportTile({
   );
 }
 
-export function RealtimeReportModal({ isOpen, onClose, isRunning, generate }: RealtimeReportModalProps) {
+export function RealtimeReportModal({ isOpen, onClose, isRunning, generate, archived = false }: RealtimeReportModalProps) {
   const [cellId, setCellId] = useState<number>(1);
   const [error, setError] = useState<string | null>(null);
   const [report, setReport] = useState<StoredReport | null>(null);
@@ -125,7 +126,7 @@ export function RealtimeReportModal({ isOpen, onClose, isRunning, generate }: Re
   const validCellId = ctx?.cells.some((c) => c.id === cellId) ? cellId : ctx?.cells[0]?.id ?? 1;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+    <div role="dialog" aria-modal="true" aria-label={archived ? 'Saved simulation report' : 'Live report'} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
       <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-5xl w-full max-h-[92vh] overflow-y-auto shadow-2xl">
         <div className="sticky top-0 bg-slate-900/95 backdrop-blur-md p-5 border-b border-slate-800 flex items-center justify-between z-20">
           <div className="flex items-center gap-3">
@@ -134,11 +135,11 @@ export function RealtimeReportModal({ isOpen, onClose, isRunning, generate }: Re
             </div>
             <div>
               <h2 className="text-base font-bold text-white flex items-center gap-2">
-                Live report
+                {archived ? 'Saved simulation report' : 'Live report'}
                 <span className={`inline-flex items-center gap-1 text-[10px] font-mono px-1.5 py-0.5 rounded border ${
                   isRunning ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/40' : 'bg-slate-800 text-slate-300 border-slate-700'
                 }`}>
-                  <Lock className="w-3 h-3" /> {isRunning ? 'auto-refreshing' : 'generated now'}
+                  <Lock className="w-3 h-3" /> {archived ? 'saved snapshot' : isRunning ? 'auto-refreshing' : 'generated now'}
                 </span>
               </h2>
               <p className="text-[11px] text-slate-400 font-mono">
@@ -167,17 +168,17 @@ export function RealtimeReportModal({ isOpen, onClose, isRunning, generate }: Re
                   onClick={() => setReport(generate())}
                   className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 cursor-pointer"
                 >
-                  <RefreshCw className="w-3.5 h-3.5" /> Regenerate now
+                  <RefreshCw className="w-3.5 h-3.5" /> {archived ? 'Reload saved snapshot' : 'Regenerate now'}
                 </button>
                 <span className="text-[11px] text-slate-500">
-                  Nothing here is pre-recorded — the figures are read from the pack the moment you open, refresh or download.
+                  {archived ? 'This report preserves a saved simulation. Charts and exports use the captured data.' : 'Figures are read from the pack when you open, refresh or download.'}
                 </span>
               </div>
 
               {/* Download grid */}
               <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4">
                 <div className="flex items-center justify-between gap-2 mb-3 flex-wrap">
-                  <div className="text-sm font-bold text-white">Download — generated at the click instant</div>
+                  <div className="text-sm font-bold text-white">{archived ? 'Download saved report' : 'Download — generated at the click instant'}</div>
                   <label className="flex items-center gap-2 text-[11px] text-slate-400">
                     Cell
                     <select
